@@ -5,7 +5,7 @@ const Page = () => {
   return (
     <div className="h-screen w-full flex items-center justify-center bg-gray-100">
       <form
-        action={addProduct}
+        // action={addProduct}
         className="rounded-xl p-3 w-full max-w-xl bg-white shadow flex flex-col gap-4"
       >
         <h3 className="text-lg font-medium">New Product Page</h3>

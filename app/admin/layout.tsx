@@ -29,6 +29,12 @@ export default function AdminLayout({
         >
           New Product
         </Link>
+        <Link
+          className="hover:text-blue-200 transition"
+          href={"/admin/profile"}
+        >
+          My Profile
+        </Link>
       </div>
       {children}
     </div>

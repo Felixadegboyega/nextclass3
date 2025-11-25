@@ -1,0 +1,26 @@
+import UserModel from "@/app/models/user"
+import dbConnect from "@/app/utils/dbConnect";
+import { NextRequest, NextResponse } from "next/server"
+
+export const GET = async (req: NextRequest) => {
+	// const users = [
+	// 	{ firstname: "Felix", lastname: "Adegboyega", age: 16 },
+	// 	{ firstname: "Cynthia", lastname: "Omisore", age: 25 },
+	// 	{ firstname: "Quadri", lastname: "Adejumobi", age: 32 },
+	// 	{ firstname: "Gentuu", lastname: "Azeez", age: 20 },
+	// ]
+
+	await dbConnect();
+	const users = await UserModel.find();
+
+	return NextResponse.json({ success: true, users })
+}
+
+
+export const PUT = async () => {
+
+}
+
+export const DELETE = async () => {
+
+} 

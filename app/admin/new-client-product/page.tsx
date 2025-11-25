@@ -1,11 +1,13 @@
 "use client"
 
 import { addProduct } from "@/app/utils/actions"
+import { useRouter } from "next/navigation"
 import { useRef, useTransition } from "react"
 
 const Page = () => {
   const titleRef = useRef<HTMLInputElement>(null)
   const priceRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
   // const [state, action, pending] = useActionState(addProduct, {title:"", price:""})
 
   const [isPending, startTransition] = useTransition()
@@ -16,7 +18,12 @@ const Page = () => {
 
     if (title && price) {
       startTransition(async () => {
-        await addProduct({ title, price })
+        const result = await addProduct({ title, price })
+        if (result.success) {
+          router.push("/admin/products")
+        } else {
+          alert(result.message)
+        }
       })
     }
   }

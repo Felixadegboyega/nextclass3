@@ -14,7 +14,11 @@ const ProductListS = async () => {
     <div>
       Product Page
       {products.map((each) => (
-        <div key={each.id}>{each.title}</div>
+        <div key={each.id}>
+          {/* <Link href={`/admin/products/${each.id}`}> */}
+          {each.title}
+          {/* </Link> */}
+        </div>
       ))}
       {/* <ProductList /> */}
       <ProductListCL />

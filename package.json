@@ -9,7 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@apollo/client": "^4.0.9",
+    "@apollo/server": "^5.2.0",
+    "@as-integrations/next": "^4.1.0",
     "bcrypt": "^6.0.0",
+    "graphql-tag": "^2.12.6",
     "jose": "^6.1.2",
     "mongoose": "^8.19.3",
     "next": "16.0.1",

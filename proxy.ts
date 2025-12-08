@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse, ProxyConfig } from "next/server";
 import { auth } from "./app/utils/session";
 
-const publicRoutes = ["/", "/signin", "/signup", "/about", "/ts"]
+// const publicRoutes = ["/", "/signin", "/signup", "/about", "/ts", "/users"]
 
 export default async function proxy (req: NextRequest) {
-	const path = req.nextUrl.pathname
-	const isPublicRoute = publicRoutes.includes(path);
+	// const path = req.nextUrl.pathname
+	// const isPublicRoute = publicRoutes.includes(path);
 
-	if (isPublicRoute) {
-		return NextResponse.next()
-	}
+	// if (isPublicRoute) {
+	// 	return NextResponse.next()
+	// }
 
 	const { success } = await auth();
 	if (!success) {
@@ -21,5 +21,6 @@ export default async function proxy (req: NextRequest) {
 
 
 export const config: ProxyConfig = {
-	matcher: ["/((?!api|_next/static|_next/image|.*\\.avif$).*)"]
+	matcher: ["/admin"]
+	// matcher: ["/((?!api|_next/static|_next/image|.*\\.avif$).*)"]
 }

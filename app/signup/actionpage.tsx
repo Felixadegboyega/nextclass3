@@ -1,32 +1,7 @@
 "use client"
 
-import { useMutation } from "@apollo/client/react"
-import gql from "graphql-tag"
 import { ChangeEvent, useState } from "react"
-import { graphqlClient as client } from "../utils/graphql-client"
-
-const REGISTER_MUTATION = gql`
-  mutation MyMutation(
-    $firstname: String!
-    $lastname: String!
-    $email: String!
-    $password: String!
-  ) {
-    register(
-      firstname: $firstname
-      lastname: $lastname
-      email: $email
-      password: $password
-    ) {
-      success
-      message
-      user {
-        firstname
-        lastname
-      }
-    }
-  }
-`
+import { signUp } from "../utils/actions"
 
 const Page = () => {
   const [user, setUser] = useState({
@@ -36,17 +11,12 @@ const Page = () => {
     email: "",
   })
 
-  const [register, { loading, error }] = useMutation<{
-    success: boolean
-    message: string
-  }>(REGISTER_MUTATION, { client })
-
   const handleSignup = async () => {
-    const { data } = await register({ variables: user })
-    if (!data?.success) {
-      alert(data?.message)
+    const response = await signUp(user)
+    if (!response.success) {
+      alert(response.message)
     } else {
-      alert(data?.message)
+      alert(response.message)
     }
   }
 
@@ -102,7 +72,7 @@ const Page = () => {
             onClick={handleSignup}
             className="bg-blue-700 hover:bg-blue-800 transition px-4 py-2.5 w-full rounded-lg text-white"
           >
-            {loading ? "Submitting..." : "Submit"}
+            Submit
           </button>
         </div>
       </div>
